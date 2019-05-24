@@ -1,0 +1,34 @@
+<%= form_for(@prova) do |f| %>
+  <% if @prova.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@prova.errors.count, "error") %> prohibited this prova from being saved:</h2>
+
+      <ul>
+      <% @prova.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :data, class: "form-label" %>
+    <%= f.text_field :data, class: "form-control data", value: data_br(@prova.data) %>
+  </div>
+  <div class="field">
+    <%= f.label :nota, class: "form-label" %>
+    <%= f.text_field :nota, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :aluno_id, class: "form-label" %>
+    <%= f.select :aluno_id, $alunos.collect { |aluno| [aluno.nome, aluno.id] }, {}, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :materium_id, class: "form-label" %>
+    <%= f.select :materium_id, $materias.collect { |materia| [materia.nome, materia.id] }, {}, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Salvar", class: "btn btn-success" %>
+    <%= link_to 'Voltar', provas_path, class: "btn btn-default" %>
+  </div>
+<% end %>

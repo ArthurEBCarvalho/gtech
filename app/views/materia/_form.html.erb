@@ -1,0 +1,26 @@
+<%= form_for(@materium) do |f| %>
+  <% if @materium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@materium.errors.count, "error") %> prohibited this materium from being saved:</h2>
+
+      <ul>
+      <% @materium.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome, class: "form-label" %><br />
+    <%= f.text_field :nome, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :descricao, "Descrição", class: "form-label" %><br />
+    <%= f.text_area :descricao, class: "form-control", rows: 3 %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Salvar", class: "btn btn-success" %>
+    <%= link_to 'Voltar', materia_path, class: "btn btn-default" %>
+  </div>
+<% end %>

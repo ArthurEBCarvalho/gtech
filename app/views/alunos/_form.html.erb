@@ -1,0 +1,30 @@
+<%= form_for(@aluno) do |f| %>
+  <% if @aluno.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@aluno.errors.count, "error") %> prohibited this aluno from being saved:</h2>
+
+      <ul>
+      <% @aluno.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome, class: "form-label" %>
+    <%= f.text_field :nome, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :nascimento, "Data de Nascimento", class: "form-label" %>
+    <%= f.text_field :nascimento, class: "form-control data", value: data_br(@aluno.nascimento) %>
+  </div>
+  <div class="field">
+    <%= f.label :endereco, "Endereço Completo", class: "form-label" %>
+    <%= f.text_area :endereco, class: "form-control", rows: 3 %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Salvar", class: "btn btn-success" %>
+    <%= link_to 'Voltar', alunos_path, class: "btn btn-default" %>
+  </div>
+<% end %>

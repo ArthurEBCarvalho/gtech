@@ -1,0 +1,51 @@
+<% if !notice.blank? %>
+<div class="alert alert-success" role="alert"><%= notice %></div>
+<% end -%>
+
+<h1>Alunos</h1>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <!-- Opções do filtro -->
+    <% @options = "<option value='id' #{'selected' if params[:filtro] == "id"}>Matrícula</option>"
+    @options += "<option value='nome' #{'selected' if params[:filtro] == "nome"}>Nome</option>"
+    @options += "<option value='nascimento' #{'selected' if params[:filtro] == "nascimento"}>Data de Nascimento</option>"
+    @options += "<option value='endereco' #{'selected' if params[:filtro] == "endereco"}>Endereço</option>" %>
+
+    <%= form_tag({}, {:method => :get}) do %>
+    <div class="input-group">
+      <%= select_tag :filtro, @options.html_safe, :class => "form-control", :prompt => "Limpar" %>
+      <%= text_field_tag :valor, params[:valor], :class => "form-control" %>
+      <%= submit_tag "Pesquisar", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<table class="table">
+  <tr>
+    <th>Matrícula</th>
+    <th>Nome</th>
+    <th>Nascimento</th>
+    <th>Endereco</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @alunos.each do |aluno| %>
+  <tr>
+    <td><%= aluno.id %></td>
+    <td><%= aluno.nome %></td>
+    <td><%= data_br aluno.nascimento %></td>
+    <td><%= aluno.endereco %></td>
+    <td><%= link_to 'Visualizar', aluno_path(aluno), class: "btn-sm btn-info" %></td>
+    <td><%= link_to 'Editar', edit_aluno_path(aluno), class: "btn-sm btn-warning" %></td>
+    <td><%= link_to 'Deletar', aluno, method: :delete, data: { confirm: 'Deseja realmente deletar este aluno?' }, class: "btn-sm btn-danger" %></td>
+  </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'Cadastrar Aluno', new_aluno_path, class: "btn btn-success" %>

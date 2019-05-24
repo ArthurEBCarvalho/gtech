@@ -1,0 +1,25 @@
+<p><strong>Nome </strong><%= @aluno.nome %></p>
+<p><strong>Data de Nascimento: </strong><%= data_br @aluno.nascimento %></p>
+<p><strong>Endereço: </strong><%= @aluno.endereco %></p>
+<p><strong>Provas: </strong></p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Nota</th>
+      <th>Matéria</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @aluno.provas.each do |prova| %>
+    <tr>
+      <td><%= data_br prova.data %></td>
+      <td><%= prova.nota %></td>
+      <td><%= prova.materium.try(:nome) %></td>
+    </tr>
+    <% end -%>
+  </tbody>
+</table>
+<div class="actions">
+  <%= link_to 'Voltar', alunos_path, class: "btn btn-default" %>
+</div>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nome: MyString
+  nascimento: 2019-05-23
+  endereco: MyText
+
+two:
+  nome: MyString
+  nascimento: 2019-05-23
+  endereco: MyText

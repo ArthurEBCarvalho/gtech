@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nota: 9.99
+  data: 2019-05-23
+  aluno_id: 1
+  materia_id: 1
+
+two:
+  nota: 9.99
+  data: 2019-05-23
+  aluno_id: 1
+  materia_id: 1
